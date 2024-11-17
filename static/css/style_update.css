@@ -1,0 +1,128 @@
+body {
+     font-family: Arial, sans-serif;
+     background-color: #f4f4f4;
+     margin: 0;
+     padding: 20px;
+     line-height: 1.6;
+}
+
+.container {
+     width: 100%;
+     max-width: 800px;
+     margin: 0 auto;
+     background-color: #fff;
+     padding: 30px;
+     border-radius: 10px;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+     text-align: center;
+     color: #8B0000;
+     margin-bottom: 25px;
+}
+
+.search-form,
+.update-form {
+     display: flex;
+     flex-direction: column;
+     gap: 15px;
+}
+
+.form-row {
+     display: flex;
+     gap: 15px;
+}
+
+.form-group {
+     flex: 1;
+     display: flex;
+     flex-direction: column;
+}
+
+label {
+     font-weight: bold;
+     margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"] {
+     padding: 10px;
+     font-size: 16px;
+     border-radius: 5px;
+     border: 1px solid #ddd;
+}
+
+.search-btn,
+.update-btn {
+     align-self: center;
+     padding: 12px 20px;
+     font-size: 16px;
+     color: white;
+     background-color: #8B0000;
+     border: none;
+     border-radius: 5px;
+     cursor: pointer;
+     transition: background-color 0.3s ease;
+}
+
+.search-btn:hover,
+.update-btn:hover {
+     background-color: #B22222;
+}
+
+.not-found {
+     text-align: center;
+     color: #8B0000;
+     font-weight: bold;
+}
+
+@media (max-width: 600px) {
+     .form-row {
+          flex-direction: column;
+     }
+}
+
+.back-btn {
+     display: block;
+     text-align: center;
+     margin-top: 20px;
+     color: #8B0000;
+     text-decoration: none;
+}
+
+.home-btn:hover {
+     background-color: #45a049;
+}
+
+.form-separator {
+     height: 2px;
+     background-color: #ddd;
+     margin: 20px 0;
+     width: 100%;
+}
+
+/* Đảm bảo input số không cho phép giá trị âm */
+input[type="number"]:invalid {
+     border-color: red;
+}
+
+.flash-message {
+     padding: 10px;
+     margin-bottom: 15px;
+     border-radius: 5px;
+     text-align: center;
+     font-weight: bold;
+}
+
+.flash-success {
+     background-color: #dff0d8;
+     color: #3c763d;
+     border: 1px solid #d6e9c6;
+}
+
+.flash-error {
+     background-color: #f2dede;
+     color: #a94442;
+     border: 1px solid #ebccd1;
+}

@@ -1,0 +1,114 @@
+<!doctype html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Update Record</title>  
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_update.css') }}">  
+</head>  
+<body>  
+    <div class="container"> 
+         <!-- Hiển thị flash messages -->  
+        {% with messages = get_flashed_messages(with_categories=true) %}  
+            {% if messages %}  
+                {% for category, message in messages %}  
+                    <div class="flash-message flash-{{ category }}">  
+                        {{ message }}  
+                    </div>  
+                {% endfor %}  
+            {% endif %}  
+        {% endwith %}  
+        <h2>Update Record</h2>  
+        
+        <!-- Search Form -->  
+        <form method="POST" action="{{ url_for('update_data') }}" class="search-form">  
+            <div class="form-group">  
+                <label for="Date">Date (dd/mm/yyyy):</label>  
+                <input type="text" id="Date" name="Date"   
+                       value="{{ request.form['Date'] if request.form['Date'] else '' }}" required>  
+            </div>  
+            
+            <div class="form-group">  
+                <label for="Country_Region">Country/Region:</label>  
+                <input type="text" id="Country_Region" name="Country_Region"   
+                       value="{{ request.form['Country_Region'] if request.form['Country_Region'] else '' }}" required>  
+            </div>  
+            
+            <button type="submit" class="search-btn">Search</button>  
+        </form>  
+
+        {% if record %}  
+        <!-- Update Form -->  
+        <form method="POST" action="{{ url_for('update_data') }}" class="update-form">  
+            <div class="form-separator"></div> <!-- Dòng phân cách -->  
+            
+            <input type="hidden" name="Date" value="{{ record['Date'] }}">  
+            <input type="hidden" name="Country_Region" value="{{ record['Country/Region'] }}">  
+            
+            <div class="form-row">  
+                <div class="form-group">  
+                    <label for="Confirmed">Confirmed:</label>  
+                    <input type="number" id="Confirmed" name="Confirmed"   
+                           value="{{ record['Confirmed'] }}" min="0" required>  
+                </div>  
+                
+                <div class="form-group">  
+                    <label for="Deaths">Deaths:</label>  
+                    <input type="number" id="Deaths" name="Deaths"   
+                           value="{{ record['Deaths'] }}" min="0" required>  
+                </div>  
+            </div>  
+            
+            <div class="form-row">  
+                <div class="form-group">  
+                    <label for="Recovered">Recovered:</label>  
+                    <input type="number" id="Recovered" name="Recovered"   
+                           value="{{ record['Recovered'] }}" min="0" required>  
+                </div>  
+                
+                <div class="form-group">  
+                    <label for="Active">Active:</label>  
+                    <input type="number" id="Active" name="Active"   
+                           value="{{ record['Active'] }}" min="0" required>  
+                </div>  
+            </div>  
+            
+            <div class="form-row">  
+                <div class="form-group">  
+                    <label for="New_cases">New Cases:</label>  
+                    <input type="number" id="New_cases" name="New_cases"   
+                           value="{{ record['New cases'] }}" min="0" required>  
+                </div>  
+                
+                <div class="form-group">  
+                    <label for="New_deaths">New Deaths:</label>  
+                    <input type="number" id="New_deaths" name="New_deaths"   
+                           value="{{ record['New deaths'] }}" min="0" required>  
+                </div>  
+            </div>  
+            
+            <div class="form-row">  
+                <div class="form-group">  
+                    <label for="New_recovered">New Recovered:</label>  
+                    <input type="number" id="New_recovered" name="New_recovered"   
+                           value="{{ record['New recovered'] }}" min="0" required>  
+                </div>  
+                
+                <div class="form-group">  
+                    <label for="WHO_Region">WHO Region:</label>  
+                    <input type="text" id="WHO_Region" name="WHO_Region"   
+                           value="{{ record['WHO Region'] }}" required>  
+                </div>  
+            </div>  
+            
+            <button type="submit" class="update-btn">Update</button>  
+        </form>  
+        {% elif search %}  
+        <p class="not-found">Record not found. Please check the Date and Country/Region.</p>  
+        {% endif %}  
+    </div>  
+    <!-- Nút quay về trang chủ -->  
+    <a href="/" class="back-btn">Quay về Trang Chủ</a> 
+    
+</body>  
+</html>

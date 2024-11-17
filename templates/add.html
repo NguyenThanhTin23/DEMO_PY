@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm Dữ Liệu</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_add.css') }}">
+</head>
+<body>
+<div class="container">
+    <h2>Thêm Dữ Liệu Mới</h2>
+
+    <!-- Hiển thị thông báo lỗi hoặc thành công -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="message">
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Form Thêm Dữ Liệu Thủ Công -->
+    <form method="POST">
+        <label for="Date">Ngày:</label>
+        <input type="text" id="Date" name="Date" 
+           required 
+           pattern="\d{2}/\d{2}/\d{4}" 
+           title="Vui lòng nhập ngày theo định dạng dd/mm/yyyy"><br>
+
+
+        <label for="Country_Region">Quốc gia/Khu vực:</label>
+        <input type="text" id="Country_Region" name="Country_Region" required><br>
+
+        <label for="Confirmed">Ca dương tính đã xác nhận:</label>
+        <input type="number" id="Confirmed" name="Confirmed" required min="0"><br>
+
+        <label for="Deaths">Số ca tử vong:</label>
+        <input type="number" id="Deaths" name="Deaths" required min="0"><br>
+
+        <label for="Recovered">Số ca đã khỏi bệnh:</label>
+        <input type="number" id="Recovered" name="Recovered" required min="0"><br>
+
+        <label for="Active">Số ca đang điều trị:</label>
+        <input type="number" id="Active" name="Active" required min="0"><br>
+
+        <label for="New_cases">Số ca mới:</label>
+        <input type="number" id="New_cases" name="New_cases" required min="0"><br>
+
+        <label for="New_deaths">Số ca tử vong mới:</label>
+        <input type="number" id="New_deaths" name="New_deaths" required min="0"><br>
+
+        <label for="New_recovered">Số ca khỏi bệnh mới:</label>
+        <input type="number" id="New_recovered" name="New_recovered" required min="0"><br>
+
+        <label for="WHO_Region">Khu vực WHO:</label>
+        <input type="text" id="WHO_Region" name="WHO_Region" required><br>
+
+        <button type="submit">Thêm Dữ Liệu</button>
+    </form>
+
+    <!-- Tùy chọn tải lên file CSV -->
+    <div class="file-upload">
+        <form class="form-upload" action="/upload_csv" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".csv" required>
+            <button type="submit">Tải file lên</button>
+        </form>
+    </div>
+
+    <a href="/" class="back-btn">Quay về Trang Chủ</a>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xóa Dữ Liệu</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_delete.css') }}"> 
+</head>
+<body>
+    <h2>Xóa Dữ Liệu</h2>
+    
+    <form method="POST">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="select-all"> Chọn tất cả</th>
+                    <th>Date</th>
+                    <th>Country/Region</th>
+                    <th>Confirmed</th>
+                    <th>Deaths</th>
+                    <th>Recovered</th>
+                    <th>Active</th>
+                    <th>New Cases</th>
+                    <th>New Deaths</th>
+                    <th>New Recovered</th>
+                    <th>WHO Region</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in table_data %}
+                    <tr>
+                         <td><input class = "check-box" type="checkbox" name="rows_to_delete" value="{{ loop.index0 }}"></td>                          
+                        <td>{{ row['Date'] }}</td>
+                        <td>{{ row['Country/Region'] }}</td>
+                        <td>{{ row['Confirmed'] }}</td>
+                        <td>{{ row['Deaths'] }}</td>
+                        <td>{{ row['Recovered'] }}</td>
+                        <td>{{ row['Active'] }}</td>
+                        <td>{{ row['New cases'] }}</td>
+                        <td>{{ row['New deaths'] }}</td>
+                        <td>{{ row['New recovered'] }}</td>
+                        <td>{{ row['WHO Region'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button type="submit">Xóa Dữ Liệu Đã Chọn</button>
+    </form>
+
+    <div class="pagination">
+          {% if page > 1 %}
+          <a href="{{ url_for('delete_data', page=1) }}">First Page</a>
+          {% else %}
+          <a class="disabled">First Page</a>
+          {% endif %}
+
+          {% if has_prev %}
+          <a href="{{ url_for('delete_data', page=page-1) }}">Previous</a>
+          {% else %}
+          <a class="disabled">Previous</a>
+          {% endif %}
+          {% for p in nearby_pages %}
+          {% if p == page %}
+               <a class="disabled">{{ p }}</a>
+          {% else %}
+               <a href="{{ url_for('delete_data', page=p) }}">{{ p }}</a>
+          {% endif %}
+          {% endfor %}
+
+          {% if has_next %}
+          <a href="{{ url_for('delete_data', page=page+1) }}">Next</a>
+          <a href="{{ url_for('delete_data', page=total_pages) }}">Last Page</a>
+          {% else %}
+          <a class="disabled">Next</a>
+          <a class="disabled">Last Page</a>
+          {% endif %}
+     </div>
+     <div class="page-info">
+          Page {{ page }} / {{ total_pages }}
+     </div>
+     <a href="/" class="back-btn">Quay về Trang Chủ</a>
+    <script>
+        // Chọn hoặc bỏ chọn tất cả các checkbox
+        document.getElementById('select-all').onclick = function() {
+            let checkboxes = document.getElementsByName('rows_to_delete');
+            for (let checkbox of checkboxes) {
+                checkbox.checked = this.checked;
+            }
+        };
+    </script>
+</body>
+</html>

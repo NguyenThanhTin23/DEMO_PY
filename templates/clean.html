@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Làm Sạch Dữ Liệu</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_clean.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Làm Sạch Dữ Liệu</h2>
+        <form method="POST" action="/clean" id="cleanForm">
+            <div class="action-buttons">
+                <a href="{{ url_for('index') }}" class="btn">Quay về Trang Chủ</a>
+                <button type="submit" class="btn" id="cleanBtn">Clean</button>
+                <a href="{{ url_for('download_clean_data') }}" class="btn" id="downloadBtn" >Download</a>
+            </div>
+        </form>
+
+        <div id="tableContainer">
+            <table>
+                <thead>
+                    <tr>
+                        {% for header in headers %}
+                            <th>{{ header }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in table_data %}
+                        <tr>
+                            {% for cell in row.values() %}
+                                <td>{{ cell }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pagination">
+            {% if page > 1 %}
+                <a href="{{ url_for('clean_data', page=1) }}">First Page</a>
+            {% else %}
+                <a class="disabled">First Page</a>
+            {% endif %}
+
+            {% if has_prev %}
+                <a href="{{ url_for('clean_data', page=page-1) }}">Previous</a>
+            {% else %}
+                <a class="disabled">Previous</a>
+            {% endif %}
+            {% for p in nearby_pages %}
+                {% if p == page %}
+                    <a class="disabled">{{ p }}</a>
+                {% else %}
+                    <a href="{{ url_for('clean_data', page=p) }}">{{ p }}</a>
+                {% endif %}
+            {% endfor %}
+
+            {% if has_next %}
+                <a href="{{ url_for('clean_data', page=page+1) }}">Next</a>
+                <a href="{{ url_for('clean_data', page=total_pages) }}">Last Page</a>
+            {% else %}
+                <a class="disabled">Next</a>
+                <a class="disabled">Last Page</a>
+            {% endif %}
+        </div>
+        <div class="page-info">
+            Page {{ page }} / {{ total_pages }}
+        </div>
+    </div>
+    
+</body>
+</html>

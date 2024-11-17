@@ -1,0 +1,122 @@
+/* Cập nhật các định dạng CSS đã có để hỗ trợ cột checkbox */
+table {
+     width: 100%;
+     max-width: 1300px;
+     margin: auto;
+     border-collapse: collapse;
+     background-color: #8B0000;
+     color: white;
+}
+
+th,
+td {
+     padding: 8px;
+     border: 1px solid #ddd;
+}
+
+th {
+     background-color: #B22222;
+     text-align: center;
+}
+
+tr:nth-child(even) {
+     background-color: #FFCCCB;
+     color: #8B0000;
+}
+
+tr:hover {
+     background-color: #FF6347;
+}
+
+.pagination {
+     margin: 20px 0;
+     text-align: center;
+}
+
+.pagination a {
+     padding: 10px 15px;
+     color: white;
+     background-color: #8B0000;
+     border-radius: 5px;
+     margin: 0 5px;
+     text-decoration: none;
+}
+
+.pagination a.disabled {
+     background-color: #555;
+     pointer-events: none;
+}
+
+.pagination a:hover:not(.disabled) {
+     background-color: #B22222;
+}
+
+h2 {
+     text-align: center;
+     font-family: 'Courier New', Courier, monospace;
+     font-size: 2.5em;
+     color: #8B0000;
+     text-shadow: 2px 2px 4px #B22222;
+     margin-top: 20px;
+}
+
+.page-info {
+     text-align: center;
+     font-weight: bold;
+     margin-top: 10px;
+     color: #8B0000;
+     font-size: 1.1em;
+}
+
+.actions {
+     text-align: center;
+     margin-top: 20px;
+}
+
+.btn-danger {
+     background-color: #B22222;
+     border: none;
+     color: white;
+     padding: 10px 20px;
+     font-size: 16px;
+     cursor: pointer;
+}
+
+.btn-danger:hover {
+     background-color: #8B0000;
+}
+
+button {
+     display: block;
+     margin: 20px auto;
+     padding: 10px 20px;
+     background-color: #8B0000;
+     color: white;
+     border: none;
+     font-size: 16px;
+     cursor: pointer;
+     border-radius: 5px;
+}
+
+button:hover {
+     background-color: #B22222;
+}
+
+.back-btn {
+     display: block;
+     text-align: center;
+     margin-top: 20px;
+     color: #8B0000;
+     text-decoration: none;
+}
+
+#select-all {
+     accent-color: #8B0000;
+}
+
+.check-box {
+     margin-right: 5px;
+     accent-color: #8B0000;
+     cursor: pointer;
+     margin-left: 12px;
+}
